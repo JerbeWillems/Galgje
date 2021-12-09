@@ -67,6 +67,7 @@ namespace WpfTryGalgje
 
         public void BtnRaad_Click(object sender, RoutedEventArgs e)
         {
+            Letter();
 
             if (woord.Contains(TxtWoord.Text) && levens != 0 && woord != TxtWoord.Text)
             {
@@ -92,6 +93,26 @@ namespace WpfTryGalgje
             TxtTekst.Text += $"Juiste letters:{ JuisteLetters }";
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
+            TxtTekst.Text += Environment.NewLine;
+            TxtTekst.Text += $"{woord}";
+        }
+        public char Letter()
+        {
+            char letter = TxtWoord.Text.ToCharArray()[0];
+            if ((woord = woord.ToLower()).Contains(letter))
+            {
+                char[] LetterArray = woord.ToCharArray();
+
+                for (int i = 0; i < woord.Length; i++)
+                {
+                    if (LetterArray[i] == letter)
+                    {
+                        TxtTekst.Text = letter.ToString();
+                    }
+                }
+            }
+            return letter;
+
         }
     }
 }
