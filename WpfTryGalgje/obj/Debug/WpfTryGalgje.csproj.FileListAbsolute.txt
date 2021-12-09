@@ -1,0 +1,15 @@
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\bin\Debug\WpfTryGalgje.exe.config
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\bin\Debug\WpfTryGalgje.exe
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\bin\Debug\WpfTryGalgje.pdb
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.AssemblyReference.cache
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\MainWindow.g.cs
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\App.g.cs
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje_MarkupCompile.cache
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje_MarkupCompile.lref
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\MainWindow.baml
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.g.resources
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.Properties.Resources.resources
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.GenerateResource.cache
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.CoreCompileInputs.cache
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.exe
+C:\Users\12101540\source\repos\WpfTryGalgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.pdb

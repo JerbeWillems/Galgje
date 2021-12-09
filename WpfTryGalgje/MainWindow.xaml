@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfTryGalgje.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTryGalgje"
+        mc:Ignorable="d"
+        Title="MainWindow" Background="Green" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="BtnVerbergWoord" Background="LightBlue" Content="Verberg woord" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,299,0,0" Height="56" Click="BtnVerbergWoord_Click"/>
+        <Button x:Name="BtnNieuwSpel" Background="LightBlue" Content="Nieuw Spel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,179,0,0" Height="56" Click="BtnNieuwSpel_Click"/>
+        <Button x:Name="BtnRaad"  Background="LightBlue" Content="Raad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,66,0,0" Height="54" Click="BtnRaad_Click"/>
+        <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0"/>
+        <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="95" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,285,0,0"/>
+    </Grid>
+</Window>
