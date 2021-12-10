@@ -57,7 +57,7 @@ namespace WpfTryGalgje {
         #line hidden
         
         
-        #line 12 "..\..\MainWindow.xaml"
+        #line 13 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnRaad;
         
@@ -65,7 +65,7 @@ namespace WpfTryGalgje {
         #line hidden
         
         
-        #line 13 "..\..\MainWindow.xaml"
+        #line 14 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox TxtTekst;
         
@@ -73,7 +73,7 @@ namespace WpfTryGalgje {
         #line hidden
         
         
-        #line 14 "..\..\MainWindow.xaml"
+        #line 15 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox TxtWoord;
         
@@ -81,7 +81,7 @@ namespace WpfTryGalgje {
         #line hidden
         
         
-        #line 15 "..\..\MainWindow.xaml"
+        #line 16 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox TxtHangMan;
         
@@ -147,8 +147,20 @@ namespace WpfTryGalgje {
             case 4:
             this.BtnRaad = ((System.Windows.Controls.Button)(target));
             
-            #line 12 "..\..\MainWindow.xaml"
+            #line 13 "..\..\MainWindow.xaml"
             this.BtnRaad.Click += new System.Windows.RoutedEventHandler(this.BtnRaad_Click);
+            
+            #line default
+            #line hidden
+            
+            #line 13 "..\..\MainWindow.xaml"
+            this.BtnRaad.MouseEnter += new System.Windows.Input.MouseEventHandler(this.BtnRaad_MouseEnter);
+            
+            #line default
+            #line hidden
+            
+            #line 13 "..\..\MainWindow.xaml"
+            this.BtnRaad.MouseLeave += new System.Windows.Input.MouseEventHandler(this.BtnRaad_MouseLeave);
             
             #line default
             #line hidden

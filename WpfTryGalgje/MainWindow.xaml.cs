@@ -106,10 +106,11 @@ namespace WpfTryGalgje
             Image();
 
         }
+        char[] LetterArray;
         public char Letter()
         {
             char letter = TxtWoord.Text.ToCharArray()[0];
-            if ((woord = woord.ToLower()).Contains(letter))
+            if ((woord = woord.ToLower()).Contains(letter) && levens != 0 && woord != TxtWoord.Text)
             {
                 char[] LetterArray = woord.ToCharArray();
 
@@ -121,7 +122,10 @@ namespace WpfTryGalgje
                     }
                 }
             }
-
+            else
+            {
+                
+            }
             return letter;
 
         }
