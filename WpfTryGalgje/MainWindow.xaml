@@ -8,9 +8,10 @@
         Title="MainWindow" Background="Green" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="BtnVerbergWoord" Background="LightBlue" Content="Verberg woord" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,299,0,0" Height="56" Click="BtnVerbergWoord_Click"/>
-        <Button x:Name="BtnNieuwSpel" Background="LightBlue" Content="Nieuw Spel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,179,0,0" Height="56" Click="BtnNieuwSpel_Click"/>
-        <Button x:Name="BtnRaad"  Background="LightBlue" Content="Raad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,66,0,0" Height="54" Click="BtnRaad_Click"/>
+        <Button x:Name="BtnNieuwSpel" Background="LightBlue" Content="Nieuw Spel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,218,0,0" Height="56" Click="BtnNieuwSpel_Click"/>
+        <Button x:Name="BtnRaad"  Background="LightBlue" Content="Raad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,142,0,0" Height="54" Click="BtnRaad_Click"/>
         <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0"/>
         <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="95" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,285,0,0"/>
+        <TextBox x:Name="TxtHangMan" HorizontalAlignment="Left" Height="109" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Margin="581,28,0,0"/>
     </Grid>
 </Window>

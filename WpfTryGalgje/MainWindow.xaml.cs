@@ -62,6 +62,10 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             BtnVerbergWoord.Visibility = Visibility.Collapsed;
             TxtWoord.Clear();
+            BitmapImage bitmap = new BitmapImage(new Uri(@"galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
+            Image image = new Image();
+            image.Source = bitmap;
+            TxtHangMan.Text = bitmap.ToString();
         }
 
 
@@ -80,6 +84,10 @@ namespace WpfTryGalgje
             }
             else if (levens == 0)
             {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 10de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
                 MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
             }
@@ -94,7 +102,9 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{woord}";
+            TxtTekst.Text += $"{Letter()}";
+            Image();
+
         }
         public char Letter()
         {
@@ -111,8 +121,75 @@ namespace WpfTryGalgje
                     }
                 }
             }
+
             return letter;
 
+        }
+        public void Image()
+        {
+            if (levens == 9)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 1ste fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 8)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 2de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 7)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 3de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 6)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 4de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 5)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 5de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 4)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 6de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 3)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 7de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 2)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 8ste fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
+            if (levens == 1)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 9de fout.PNG", UriKind.RelativeOrAbsolute));
+                Image image = new Image();
+                image.Source = bitmap;
+                TxtHangMan.Text = bitmap.ToString();
+            }
         }
     }
 }
