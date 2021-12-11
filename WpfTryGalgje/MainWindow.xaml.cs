@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfTryGalgje
 {
@@ -25,12 +26,15 @@ namespace WpfTryGalgje
             InitializeComponent();
 
         }
+        char[] TekensArray;
+        char[] LengteArray;
         string woord;
         int levens;
         StringBuilder JuisteLetters = new StringBuilder();
         StringBuilder FouteLetters = new StringBuilder();
+        DispatcherTimer dispatcherTimer;
+        int seconde = 0;
 
-        
         public void BtnNieuwSpel_Click(object sender, RoutedEventArgs e)
         {
             TxtTekst.Text = "Geheim woord ingeven";
@@ -60,21 +64,31 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
+            TxtTekst.Text += $"{LengteArray}";
             BtnVerbergWoord.Visibility = Visibility.Collapsed;
             TxtWoord.Clear();
             BitmapImage bitmap = new BitmapImage(new Uri(@"galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
             Image image = new Image();
             image.Source = bitmap;
             TxtHangMan.Text = bitmap.ToString();
+            Letter();
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            LblTimer.Content = seconde++;
         }
 
 
         public void BtnRaad_Click(object sender, RoutedEventArgs e)
         {
-            Letter();
 
             if (woord.Contains(TxtWoord.Text) && levens != 0 && woord != TxtWoord.Text)
             {
+                Letter();
                 JuisteLetters.Append(TxtWoord.Text);
             }
             else if (woord == TxtWoord.Text)
@@ -102,32 +116,13 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{Letter()}";
+            TxtTekst.Text += $"{LengteArray}";
             Image();
 
         }
-        char[] LetterArray;
-        public char Letter()
+        public void Letter()
         {
-            char letter = TxtWoord.Text.ToCharArray()[0];
-            if ((woord = woord.ToLower()).Contains(letter) && levens != 0 && woord != TxtWoord.Text)
-            {
-                char[] LetterArray = woord.ToCharArray();
-
-                for (int i = 0; i < woord.Length; i++)
-                {
-                    if (LetterArray[i] == letter)
-                    {
-                        TxtTekst.Text = letter.ToString();
-                    }
-                }
-            }
-            else
-            {
-                
-            }
-            return letter;
-
+            
         }
         public void Image()
         {
@@ -175,7 +170,7 @@ namespace WpfTryGalgje
             }
             if (levens == 3)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 7de fout.PNG", UriKind.RelativeOrAbsolute));
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 7de fout.PNG", UriKind.RelativeOrAbsolute));
                 Image image = new Image();
                 image.Source = bitmap;
                 TxtHangMan.Text = bitmap.ToString();

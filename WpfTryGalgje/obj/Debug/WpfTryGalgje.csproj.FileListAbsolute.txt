@@ -28,12 +28,12 @@ C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.cs
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.CoreCompileInputs.cache
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.exe
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.pdb
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 1ste fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 2de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Galgje geen fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 4de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 5de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 6de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 7de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 8ste fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\galgje 9de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 1ste fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 2de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\Galgje geen fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 4de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 5de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 6de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 7de fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 8ste fout.PNG
+C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 9de fout.PNG
