@@ -26,14 +26,16 @@ namespace WpfTryGalgje
             InitializeComponent();
 
         }
-        char[] TekensArray;
-        char[] LengteArray;
+        char[] ZoekWoordArray;
+        char[] VerbergWoordArray;
         string woord;
         int levens;
         StringBuilder JuisteLetters = new StringBuilder();
         StringBuilder FouteLetters = new StringBuilder();
-        DispatcherTimer dispatcherTimer;
-        int seconde = 0;
+        int goktijd = 10;
+        DispatcherTimer timer = new DispatcherTimer();
+
+
 
         public void BtnNieuwSpel_Click(object sender, RoutedEventArgs e)
         {
@@ -44,7 +46,11 @@ namespace WpfTryGalgje
             JuisteLetters.Clear();
             FouteLetters.Clear();
             levens = 10;
-            
+            timer.Stop();
+            LblTimer.Visibility = Visibility.Hidden;
+            ZoekWoordArray = new char[] { };
+            VerbergWoordArray = new char[] { };
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -56,7 +62,14 @@ namespace WpfTryGalgje
 
         public void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
         {
+            RegistreerZoekWoord();
+            WoordMaskeren();
+            timer.Tick += new EventHandler(DispatcherTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            StartTimer();
             BtnRaad.IsEnabled = true;
+            ZoekWoordArray = new char[] { };
+            VerbergWoordArray = new char[] { };
             woord = TxtWoord.Text;
             TxtTekst.Text = $"Levens: {levens}";
             TxtTekst.Text += Environment.NewLine;
@@ -64,23 +77,69 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{LengteArray}";
+            TxtTekst.Text += $"{VerbergWoordArray}";
             BtnVerbergWoord.Visibility = Visibility.Collapsed;
+            LblTimer.Visibility = Visibility.Visible;
             TxtWoord.Clear();
             BitmapImage bitmap = new BitmapImage(new Uri(@"galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
             Image image = new Image();
             image.Source = bitmap;
             TxtHangMan.Text = bitmap.ToString();
-            Letter();
-            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
         }
+        private void RegistreerZoekWoord()
+        {
+            ZoekWoordArray = TxtWoord.Text.ToCharArray(0, TxtWoord.Text.Length);
+        }
+
+        private void WoordMaskeren()
+        {
+
+            VerbergWoordArray = new char[ZoekWoordArray.Length];
+
+            for (int i = 0; i < ZoekWoordArray.Length; i++)
+            {
+                VerbergWoordArray[i] = '*';
+            }
+
+        }
+
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            LblTimer.Content = seconde++;
+            
+            goktijd--;
+            if (goktijd == 0)
+            {
+                timer.Stop();
+                MessageBox.Show("De tijd is op, u heeft maar 10 seconden");
+                levens--; 
+                ResetTimer();
+                
+
+            }
+            LblTimer.Content = goktijd.ToString();
+            TxtTekst.Text = $"Levens: {levens}";
+            TxtTekst.Text += Environment.NewLine;
+            TxtTekst.Text += $"Juiste letters:{ JuisteLetters }";
+            TxtTekst.Text += Environment.NewLine;
+            TxtTekst.Text += $"Foute letters: { FouteLetters } ";
+            TxtTekst.Text += Environment.NewLine;
+            TxtTekst.Text += $"{VerbergWoordArray}";
+            Image();
+
+
         }
+        private void StartTimer()
+        {
+            timer.Start();
+        }
+
+        private void ResetTimer()
+        {
+            goktijd = 10;
+            LblTimer.Content = goktijd.ToString();
+            StartTimer();
+        }
+
 
 
         public void BtnRaad_Click(object sender, RoutedEventArgs e)
@@ -88,13 +147,16 @@ namespace WpfTryGalgje
 
             if (woord.Contains(TxtWoord.Text) && levens != 0 && woord != TxtWoord.Text)
             {
-                Letter();
                 JuisteLetters.Append(TxtWoord.Text);
+                ResetTimer();
+                TxtWoord.Clear();
             }
             else if (woord == TxtWoord.Text)
             {
                 MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
+                ResetTimer();
+                TxtWoord.Clear();
             }
             else if (levens == 0)
             {
@@ -104,11 +166,15 @@ namespace WpfTryGalgje
                 TxtHangMan.Text = bitmap.ToString();
                 MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
+                ResetTimer();
+                TxtWoord.Clear();
             }
-            else 
+            else
             {
                 levens--;
                 FouteLetters.Append(TxtWoord.Text);
+                ResetTimer();
+                TxtWoord.Clear();
             }
             TxtTekst.Text = $"Levens: {levens}";
             TxtTekst.Text += Environment.NewLine;
@@ -116,13 +182,9 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{LengteArray}";
+            TxtTekst.Text += $"{VerbergWoordArray}";
             Image();
 
-        }
-        public void Letter()
-        {
-            
         }
         public void Image()
         {
