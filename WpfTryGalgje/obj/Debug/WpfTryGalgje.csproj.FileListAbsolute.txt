@@ -37,4 +37,3 @@ C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 7de fout.PNG
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 8ste fout.PNG
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\galgje 9de fout.PNG
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\bin\Debug\Pictures\1ste fout.JPG

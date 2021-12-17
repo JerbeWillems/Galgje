@@ -67,24 +67,27 @@ namespace WpfTryGalgje
             timer.Tick += new EventHandler(DispatcherTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
             StartTimer();
+            BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures/galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
+            //Image image = new Image();
+            //image.Source = bitmap;
+            //TxtHangMan.Text = bitmap.ToString();
+            ImgHangMan.Source = bitmap;
             BtnRaad.IsEnabled = true;
-            ZoekWoordArray = new char[] { };
-            VerbergWoordArray = new char[] { };
             woord = TxtWoord.Text;
+            Tekst();
+            BtnVerbergWoord.Visibility = Visibility.Collapsed;
+            LblTimer.Visibility = Visibility.Visible;
+            TxtWoord.Clear();
+        }
+        private void Tekst()
+        {
             TxtTekst.Text = $"Levens: {levens}";
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Juiste letters:{ JuisteLetters }";
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{VerbergWoordArray}";
-            BtnVerbergWoord.Visibility = Visibility.Collapsed;
-            LblTimer.Visibility = Visibility.Visible;
-            TxtWoord.Clear();
-            BitmapImage bitmap = new BitmapImage(new Uri(@"galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
-            Image image = new Image();
-            image.Source = bitmap;
-            TxtHangMan.Text = bitmap.ToString();
+            TxtTekst.Text += $"{string.Join("", VerbergWoordArray)}";
         }
         private void RegistreerZoekWoord()
         {
@@ -110,20 +113,15 @@ namespace WpfTryGalgje
             if (goktijd == 0)
             {
                 timer.Stop();
+                levens--;
+                TxtTekst.Background = Brushes.Red;
                 MessageBox.Show("De tijd is op, u heeft maar 10 seconden");
-                levens--; 
                 ResetTimer();
                 
 
             }
             LblTimer.Content = goktijd.ToString();
-            TxtTekst.Text = $"Levens: {levens}";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"Juiste letters:{ JuisteLetters }";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"Foute letters: { FouteLetters } ";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{VerbergWoordArray}";
+            Tekst();
             Image();
 
 
@@ -138,6 +136,7 @@ namespace WpfTryGalgje
             goktijd = 10;
             LblTimer.Content = goktijd.ToString();
             StartTimer();
+            TxtTekst.Background = Brushes.LightCoral;
         }
 
 
@@ -160,13 +159,11 @@ namespace WpfTryGalgje
             }
             else if (levens == 0)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 10de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 10de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
                 MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
-                ResetTimer();
+                timer.Stop();
                 TxtWoord.Clear();
             }
             else
@@ -176,13 +173,7 @@ namespace WpfTryGalgje
                 ResetTimer();
                 TxtWoord.Clear();
             }
-            TxtTekst.Text = $"Levens: {levens}";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"Juiste letters:{ JuisteLetters }";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"Foute letters: { FouteLetters } ";
-            TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{VerbergWoordArray}";
+            Tekst();
             Image();
 
         }
@@ -190,66 +181,48 @@ namespace WpfTryGalgje
         {
             if (levens == 9)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 1ste fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 1ste fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 8)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 2de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 2de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 7)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 3de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 3de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 6)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 4de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 4de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 5)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 5de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 5de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 4)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 6de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 6de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 3)
             {
                 BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 7de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 2)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 8ste fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 8ste fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
             if (levens == 1)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"galgje 9de fout.PNG", UriKind.RelativeOrAbsolute));
-                Image image = new Image();
-                image.Source = bitmap;
-                TxtHangMan.Text = bitmap.ToString();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\galgje 9de fout.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
             }
         }
     }

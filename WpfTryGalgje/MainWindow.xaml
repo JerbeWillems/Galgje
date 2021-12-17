@@ -56,7 +56,7 @@
 
         <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0"/>
         <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="95" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,285,0,0"/>
-        <TextBox x:Name="TxtHangMan" HorizontalAlignment="Left" Height="109" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Margin="581,28,0,0"/>
+        <Image Name="ImgHangMan" Source="Pictures/Galgje geen fout.PNG" Margin="581,28,46.6,283" Width="166" Height="109"></Image>
         <Label x:Name="LblTimer" Content="" HorizontalAlignment="Left" Background="LightBlue" VerticalAlignment="Top" Margin="428,51,0,0" Height="54" Width="96"/>
     </Grid>
 </Window>
