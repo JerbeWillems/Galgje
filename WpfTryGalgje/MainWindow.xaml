@@ -6,57 +6,61 @@
         xmlns:local="clr-namespace:WpfTryGalgje"
         mc:Ignorable="d"
         Title="MainWindow" Background="Green" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
-        <Button x:Name="BtnVerbergWoord" Background="LightBlue" Content="Verberg woord" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,299,0,0" Height="56" Click="BtnVerbergWoord_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="BtnNieuwSpel" Background="LightBlue" Content="Nieuw Spel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,218,0,0" Height="56" Click="BtnNieuwSpel_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Button x:Name="BtnRaad"  Background="LightBlue" Content="Raad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,142,0,0" Height="54" Click="BtnRaad_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0"/>
-        <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="95" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,285,0,0"/>
-        <Image Name="ImgHangMan" Source="Pictures/Galgje geen fout.PNG" Margin="581,28,46.6,283" Width="166" Height="109"></Image>
-        <Label x:Name="LblTimer" Content="" HorizontalAlignment="Left" Background="LightBlue" VerticalAlignment="Top" Margin="428,51,0,0" Height="54" Width="96"/>
+    <Viewbox>
+        <Grid>
+        <StackPanel>
+            <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0" FontFamily="Showcard Gothic" FontSize="22"/>
+            <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="98" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,20,0,0" FontFamily="Showcard Gothic" FontSize="22"/>
+        </StackPanel>
+        <Label x:Name="LblTimer" Content="" HorizontalAlignment="Left" Background="LightBlue" VerticalAlignment="Top" Margin="428,51,0,0" Height="54" Width="96" FontFamily="Showcard Gothic" FontSize="16"/>
+        <StackPanel>
+            <Image Name="ImgHangMan" Margin="581,28,46,28" Width="166" Height="109"></Image>
+            <Button x:Name="BtnRaad"  Background="LightBlue" Content="Raad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,10,0,0" Height="54" Click="BtnRaad_Click" FontFamily="Showcard Gothic" FontSize="22">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="BtnNieuwSpel" Background="LightBlue" Content="Nieuw Spel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,10,0,0" Height="56" Click="BtnNieuwSpel_Click" FontFamily="Showcard Gothic" FontSize="22">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="BtnVerbergWoord" Background="LightBlue" Content="Verberg woord" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="581,10,0,0" Height="56" Click="BtnVerbergWoord_Click" FontFamily="Showcard Gothic" FontSize="18">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </Grid>
+    </Viewbox>
 </Window>

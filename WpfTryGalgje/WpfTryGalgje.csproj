@@ -95,47 +95,51 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pictures\galgje 1ste fout.PNG">
+    <Resource Include="Pictures\1.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pictures\galgje 2de fout.PNG">
+    <Resource Include="Pictures\2.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pictures\Galgje geen fout.PNG">
+    <Resource Include="Pictures\0.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pictures\3de fout.PNG" />
+    <Resource Include="Pictures\3.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pictures\galgje 4de fout.PNG">
+    <Resource Include="Pictures\4.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pictures\galgje 5de fout.PNG">
+    <Resource Include="Pictures\5.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pictures\galgje 6de fout.PNG">
+    </Resource>
+    <Resource Include="Pictures\6.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pictures\galgje 10de fout.PNG" />
-    <EmbeddedResource Include="Pictures\galgje 7de fout.PNG">
+    <Resource Include="Pictures\10.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pictures\galgje 8ste fout.PNG">
+    </Resource>
+    <Resource Include="Pictures\7.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pictures\galgje 9de fout.PNG">
+    </Resource>
+    <Resource Include="Pictures\8.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
+    <Resource Include="Pictures\9.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
