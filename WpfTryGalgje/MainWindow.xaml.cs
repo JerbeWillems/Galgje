@@ -30,6 +30,7 @@ namespace WpfTryGalgje
         char[] VerbergWoordArray;
         string woord;
         int levens;
+        string[] ZoekWoord;
         StringBuilder JuisteLetters = new StringBuilder();
         StringBuilder FouteLetters = new StringBuilder();
         int goktijd = 10;
@@ -37,7 +38,7 @@ namespace WpfTryGalgje
 
 
 
-        public void BtnNieuwSpel_Click(object sender, RoutedEventArgs e)
+       private void BtnNieuwSpel_Click(object sender, RoutedEventArgs e)
         {
             TxtTekst.Text = "Geheim woord ingeven";
             BtnRaad.IsEnabled = false;
@@ -48,6 +49,7 @@ namespace WpfTryGalgje
             levens = 10;
             timer.Stop();
             LblTimer.Visibility = Visibility.Hidden;
+            LblMaskingWoord.Visibility = Visibility.Hidden;
             ZoekWoordArray = new char[] { };
             VerbergWoordArray = new char[] { };
             TxtWoord.IsEnabled = true;
@@ -59,9 +61,11 @@ namespace WpfTryGalgje
             TxtTekst.Text = "Geheim woord ingeven";
             BtnRaad.IsEnabled = false;
             levens = 10;
+            LblTimer.Visibility = Visibility.Hidden;
+            LblMaskingWoord.Visibility = Visibility.Hidden;
         }
 
-        public void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
+       private void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
         {
             RegistreerZoekWoord();
             WoordMaskeren();
@@ -72,8 +76,10 @@ namespace WpfTryGalgje
             woord = TxtWoord.Text;
             Tekst();
             Image();
+
             BtnVerbergWoord.Visibility = Visibility.Collapsed;
             LblTimer.Visibility = Visibility.Visible;
+            LblMaskingWoord.Visibility= Visibility.Visible;
             TxtWoord.Clear();
         }
         private void Tekst()
@@ -84,7 +90,6 @@ namespace WpfTryGalgje
             TxtTekst.Text += Environment.NewLine;
             TxtTekst.Text += $"Foute letters: { FouteLetters } ";
             TxtTekst.Text += Environment.NewLine;
-            TxtTekst.Text += $"{string.Join("", VerbergWoordArray)}";
         }
         private void RegistreerZoekWoord()
         {
@@ -99,13 +104,17 @@ namespace WpfTryGalgje
             for (int i = 0; i < ZoekWoordArray.Length; i++)
             {
                 VerbergWoordArray[i] = '*';
+                //if (ZoekWoord[i] == TxtWoord.Text)
+                //{
+
+                //}
             }
+            LblMaskingWoord.Content = string.Join("", VerbergWoordArray);
 
         }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
             goktijd--;
             if (goktijd == 0)
             {
@@ -138,7 +147,7 @@ namespace WpfTryGalgje
 
 
 
-        public void BtnRaad_Click(object sender, RoutedEventArgs e)
+       private void BtnRaad_Click(object sender, RoutedEventArgs e)
         {
 
             if (woord.Contains(TxtWoord.Text) && levens != 0 && woord != TxtWoord.Text)
@@ -179,11 +188,6 @@ namespace WpfTryGalgje
         }
         public void Image()
         {
-            if (levens == 10)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures/Galgje geen fout.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
             if (levens == 9)
             {
                 BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\1.PNG", UriKind.RelativeOrAbsolute));
