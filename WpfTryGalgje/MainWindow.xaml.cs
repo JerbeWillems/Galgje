@@ -68,12 +68,11 @@ namespace WpfTryGalgje
        private void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
         {
             RegistreerZoekWoord();
-            WoordMaskeren();
+            WoordMaskeren(string.Empty);
             timer.Tick += new EventHandler(DispatcherTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
-            ResetTimer();
+            StartTimer();
             BtnRaad.IsEnabled = true;
-            woord = TxtWoord.Text;
             Tekst();
             Image();
 
@@ -93,26 +92,34 @@ namespace WpfTryGalgje
         }
         private void RegistreerZoekWoord()
         {
-            ZoekWoordArray = TxtWoord.Text.ToCharArray(0, TxtWoord.Text.Length);
+            var woordLower = TxtWoord.Text.ToLower();
+            ZoekWoordArray = woordLower. ToCharArray(0, TxtWoord.Text.Length);
+            woord = woordLower;
+            TxtWoord.Clear();
         }
 
-        private void WoordMaskeren()
+        private void WoordMaskeren(string guess)
         {
-            ZoekWoord = new string[1] {$"{woord}"};
+
+            //ZoekWoord = new string[woord.Length]; //{$"{woord}"}
 
             VerbergWoordArray = new char[ZoekWoordArray.Length];
             //bool gevonden = false;
-
+            LblMaskingWoord.Content = string.Empty;
             for (int i = 0; i < ZoekWoordArray.Length; i++)
             {
                 VerbergWoordArray[i] = '*';
-                //if (ZoekWoord[i] == TxtWoord.Text)
-                //{
-                   // LblMaskingWoord.Content = $"{ZoekWoord[i]}";
+                if (guess.Length > 0 && ZoekWoordArray[i] == guess.ToCharArray()[0])
+                {
+                    LblMaskingWoord.Content += $"{ZoekWoordArray[i]}";
                     //gevonden = true;
-                //}
+                }
+                else
+                {
+                    LblMaskingWoord.Content += "*";
+                }
             }
-            LblMaskingWoord.Content = string.Join("", VerbergWoordArray);
+            //LblMaskingWoord.Content = string.Join("", VerbergWoordArray);
             //if (!gevonden)
             //{
 
@@ -156,15 +163,17 @@ namespace WpfTryGalgje
 
        private void BtnRaad_Click(object sender, RoutedEventArgs e)
         {
+            var woordLower = TxtWoord.Text.ToLower();
 
-            if (woord.Contains(TxtWoord.Text) && levens != 0 && woord != TxtWoord.Text)
+            if (woord.Contains(woordLower) && levens != 0 && woord != woordLower && woordLower.Length == 1)
             {
-                JuisteLetters.Append(TxtWoord.Text);
+                WoordMaskeren(woordLower);
+                JuisteLetters.Append(woordLower);
                 ResetTimer();
                 TxtWoord.Clear();
                 
             }
-            else if (woord == TxtWoord.Text)
+            else if (woord == woordLower)
             {
                 MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
@@ -186,7 +195,7 @@ namespace WpfTryGalgje
             else
             {
                 levens--;
-                FouteLetters.Append(TxtWoord.Text);
+                FouteLetters.Append(woordLower);
                 ResetTimer();
                 TxtWoord.Clear();
             }
