@@ -71,7 +71,7 @@ namespace WpfTryGalgje
             WoordMaskeren();
             timer.Tick += new EventHandler(DispatcherTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
-            StartTimer();
+            ResetTimer();
             BtnRaad.IsEnabled = true;
             woord = TxtWoord.Text;
             Tekst();
@@ -98,22 +98,29 @@ namespace WpfTryGalgje
 
         private void WoordMaskeren()
         {
+            ZoekWoord = new string[1] {$"{woord}"};
 
             VerbergWoordArray = new char[ZoekWoordArray.Length];
+            //bool gevonden = false;
 
             for (int i = 0; i < ZoekWoordArray.Length; i++)
             {
                 VerbergWoordArray[i] = '*';
                 //if (ZoekWoord[i] == TxtWoord.Text)
                 //{
-
+                   // LblMaskingWoord.Content = $"{ZoekWoord[i]}";
+                    //gevonden = true;
                 //}
             }
             LblMaskingWoord.Content = string.Join("", VerbergWoordArray);
+            //if (!gevonden)
+            //{
+
+            //}
 
         }
 
-        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        public void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             goktijd--;
             if (goktijd == 0)
@@ -172,6 +179,7 @@ namespace WpfTryGalgje
                 MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
                 BtnRaad.IsEnabled = false;
                 timer.Stop();
+
                 TxtWoord.Clear();
                 TxtWoord.IsEnabled = false;
             }
