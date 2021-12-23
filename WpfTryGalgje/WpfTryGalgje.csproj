@@ -105,7 +105,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pictures\0.PNG">
+    <Resource Include="Pictures\Test.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

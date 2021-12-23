@@ -24,6 +24,8 @@ namespace WpfTryGalgje
         public MainWindow()
         {
             InitializeComponent();
+            timer.Tick += new EventHandler(DispatcherTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
 
         }
         char[] ZoekWoordArray;
@@ -53,6 +55,7 @@ namespace WpfTryGalgje
             ZoekWoordArray = new char[] { };
             VerbergWoordArray = new char[] { };
             TxtWoord.IsEnabled = true;
+            Image();
 
         }
 
@@ -69,9 +72,7 @@ namespace WpfTryGalgje
         {
             RegistreerZoekWoord();
             WoordMaskeren(string.Empty);
-            timer.Tick += new EventHandler(DispatcherTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            StartTimer();
+            ResetTimer();
             BtnRaad.IsEnabled = true;
             Tekst();
             Image();
@@ -103,16 +104,22 @@ namespace WpfTryGalgje
 
             //ZoekWoord = new string[woord.Length]; //{$"{woord}"}
 
-            VerbergWoordArray = new char[ZoekWoordArray.Length];
+            //VerbergWoordArray = new char[ZoekWoordArray.Length];
             //bool gevonden = false;
+            string tempcontent = LblMaskingWoord.Content.ToString();
+            char[] tempchar = tempcontent.ToCharArray();
             LblMaskingWoord.Content = string.Empty;
             for (int i = 0; i < ZoekWoordArray.Length; i++)
             {
-                VerbergWoordArray[i] = '*';
+                //VerbergWoordArray[i] = '*';
                 if (guess.Length > 0 && ZoekWoordArray[i] == guess.ToCharArray()[0])
                 {
                     LblMaskingWoord.Content += $"{ZoekWoordArray[i]}";
                     //gevonden = true;
+                }
+                else if (tempchar.Length == ZoekWoordArray.Length && !tempchar[i].Equals('*'))
+                {
+                    LblMaskingWoord.Content += $"{ZoekWoordArray[i]}";
                 }
                 else
                 {
@@ -137,12 +144,12 @@ namespace WpfTryGalgje
                 TxtTekst.Background = Brushes.Red;
                 MessageBox.Show("De tijd is op, u heeft maar 10 seconden");
                 ResetTimer();
-                
+                Image();
 
             }
             LblTimer.Content = goktijd.ToString();
             Tekst();
-            Image();
+            
 
 
         }
@@ -165,32 +172,30 @@ namespace WpfTryGalgje
         {
             var woordLower = TxtWoord.Text.ToLower();
 
-            if (woord.Contains(woordLower) && levens != 0 && woord != woordLower && woordLower.Length == 1)
+            if (woordLower.Length == 1 && woord.Contains(woordLower) && levens != 0)
             {
                 WoordMaskeren(woordLower);
                 JuisteLetters.Append(woordLower);
                 ResetTimer();
                 TxtWoord.Clear();
+                if (LblMaskingWoord.Content.Equals(woord))
+                {
+                    BtnRaad.IsEnabled = false;
+                    timer.Stop();
+                    TxtWoord.Clear();
+                    TxtWoord.IsEnabled = false;
+                    MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
+                }
                 
             }
+
             else if (woord == woordLower)
             {
+                BtnRaad.IsEnabled = false;
+                timer.Stop();
+                TxtWoord.Clear();
+                TxtWoord.IsEnabled = false;
                 MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
-                BtnRaad.IsEnabled = false;
-                timer.Stop();
-                TxtWoord.Clear();
-                TxtWoord.IsEnabled = false;
-            }
-            else if (levens == 0)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\10.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-                MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
-                BtnRaad.IsEnabled = false;
-                timer.Stop();
-
-                TxtWoord.Clear();
-                TxtWoord.IsEnabled = false;
             }
             else
             {
@@ -199,57 +204,26 @@ namespace WpfTryGalgje
                 ResetTimer();
                 TxtWoord.Clear();
             }
+            if (levens == 0)
+            {
+                timer.Stop();
+                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\10.PNG", UriKind.RelativeOrAbsolute));
+                ImgHangMan.Source = bitmap;
+                MessageBox.Show("U levens zijn op, u heeft verloren, druk op Nieuw Spel om opnieuw te beginnen");
+                BtnRaad.IsEnabled = false;
+
+                TxtWoord.Clear();
+                TxtWoord.IsEnabled = false;
+            }
             Tekst();
             Image();
 
         }
         public void Image()
         {
-            if (levens == 9)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\1.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 8)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\2.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 7)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\3.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 6)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\4.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 5)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\5.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 4)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\6.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 3)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\7.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 2)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\8.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
-            if (levens == 1)
-            {
-                BitmapImage bitmap = new BitmapImage(new Uri(@"Pictures\9.PNG", UriKind.RelativeOrAbsolute));
-                ImgHangMan.Source = bitmap;
-            }
+            var picture = 10 - levens;
+            BitmapImage bitmap = new BitmapImage(new Uri($@"Pictures\{picture}.PNG", UriKind.RelativeOrAbsolute));
+            ImgHangMan.Source = bitmap;
         }
     }
 }

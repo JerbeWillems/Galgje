@@ -27,5 +27,4 @@ C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.cs
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.CoreCompileInputs.cache
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.exe
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.pdb
-C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.AssemblyReference.cache
 C:\Users\12101540\Documents\GitHub\Galgje\WpfTryGalgje\obj\Debug\WpfTryGalgje.csproj.SuggestedBindingRedirects.cache
