@@ -31,11 +31,10 @@ namespace WpfTryGalgje
         char[] ZoekWoordArray;
         char[] VerbergWoordArray;
         string woord;
+        int Timer;
         int levens;
-        string[] ZoekWoord;
         StringBuilder JuisteLetters = new StringBuilder();
         StringBuilder FouteLetters = new StringBuilder();
-        int goktijd = 10;
         DispatcherTimer timer = new DispatcherTimer();
 
 
@@ -56,6 +55,8 @@ namespace WpfTryGalgje
             VerbergWoordArray = new char[] { };
             TxtWoord.IsEnabled = true;
             Image();
+            MnITimer.Visibility = Visibility.Visible;
+            MnITimer.IsEnabled = true;
 
         }
 
@@ -66,6 +67,8 @@ namespace WpfTryGalgje
             levens = 10;
             LblTimer.Visibility = Visibility.Hidden;
             LblMaskingWoord.Visibility = Visibility.Hidden;
+            TxtTimerSettings.Visibility = Visibility.Hidden;
+            LblInfo.Visibility = Visibility.Hidden;
         }
 
        private void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
@@ -77,6 +80,9 @@ namespace WpfTryGalgje
             Tekst();
             Image();
 
+            MnINieuwSpel.IsEnabled = true;
+            MnITimer.Visibility= Visibility.Hidden;
+            MnITimer.IsEnabled = false;
             BtnVerbergWoord.Visibility = Visibility.Collapsed;
             LblTimer.Visibility = Visibility.Visible;
             LblMaskingWoord.Visibility= Visibility.Visible;
@@ -102,20 +108,17 @@ namespace WpfTryGalgje
         private void WoordMaskeren(string guess)
         {
 
-            //ZoekWoord = new string[woord.Length]; //{$"{woord}"}
-
-            //VerbergWoordArray = new char[ZoekWoordArray.Length];
-            //bool gevonden = false;
+           
             string tempcontent = LblMaskingWoord.Content.ToString();
             char[] tempchar = tempcontent.ToCharArray();
             LblMaskingWoord.Content = string.Empty;
             for (int i = 0; i < ZoekWoordArray.Length; i++)
             {
-                //VerbergWoordArray[i] = '*';
+                
                 if (guess.Length > 0 && ZoekWoordArray[i] == guess.ToCharArray()[0])
                 {
                     LblMaskingWoord.Content += $"{ZoekWoordArray[i]}";
-                    //gevonden = true;
+                    
                 }
                 else if (tempchar.Length == ZoekWoordArray.Length && !tempchar[i].Equals('*'))
                 {
@@ -126,28 +129,23 @@ namespace WpfTryGalgje
                     LblMaskingWoord.Content += "*";
                 }
             }
-            //LblMaskingWoord.Content = string.Join("", VerbergWoordArray);
-            //if (!gevonden)
-            //{
-
-            //}
 
         }
 
         public void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            goktijd--;
-            if (goktijd == 0)
+            Timer--;
+            if (Timer == 0)
             {
                 timer.Stop();
                 levens--;
                 TxtTekst.Background = Brushes.Red;
-                MessageBox.Show("De tijd is op, u heeft maar 10 seconden");
+                MessageBox.Show($"De tijd is op, u verliest 1 leven");
                 ResetTimer();
                 Image();
 
             }
-            LblTimer.Content = goktijd.ToString();
+            LblTimer.Content = Timer.ToString();
             Tekst();
             
 
@@ -160,8 +158,8 @@ namespace WpfTryGalgje
 
         private void ResetTimer()
         {
-            goktijd = 10;
-            LblTimer.Content = goktijd.ToString();
+            TimerSettings();
+            LblTimer.Content = Timer.ToString();
             StartTimer();
             TxtTekst.Background = Brushes.LightCoral;
         }
@@ -215,6 +213,7 @@ namespace WpfTryGalgje
                 TxtWoord.Clear();
                 TxtWoord.IsEnabled = false;
             }
+            MnINieuwSpel.IsEnabled = true;
             Tekst();
             Image();
 
@@ -224,6 +223,75 @@ namespace WpfTryGalgje
             var picture = 10 - levens;
             BitmapImage bitmap = new BitmapImage(new Uri($@"Pictures\{picture}.PNG", UriKind.RelativeOrAbsolute));
             ImgHangMan.Source = bitmap;
+        }
+
+        private void MnINieuwSpel_Click(object sender, RoutedEventArgs e)
+        {
+            NieuwspelMenuShow();
+            MessageBox.Show("Wil je een nieuw spel starten? Druk op de knop Nieuw Spel");
+        }
+        private void NieuwspelMenuShow()
+        {
+            LblInfo.Visibility = Visibility.Hidden;
+            TxtTimerSettings.Visibility = Visibility.Hidden;
+            LblTimer.Visibility = Visibility.Hidden;
+            LblMaskingWoord.Visibility = Visibility.Hidden;
+            BtnNieuwSpel.IsEnabled = true;
+            BtnVerbergWoord.Visibility = Visibility.Visible;
+            TxtWoord.Visibility = Visibility.Visible;
+            BtnRaad.Visibility = Visibility.Visible;
+            BtnNieuwSpel.Visibility = Visibility.Visible;
+            BtnRaad.IsEnabled = true;
+            BtnVerbergWoord.IsEnabled = true;
+            ImgHangMan.Visibility = Visibility.Visible;
+            TxtTekst.Visibility = Visibility.Visible;
+        }
+
+        private void MnISpelAfsluiten_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();   
+        }
+
+        private void MnITimer_Click(object sender, RoutedEventArgs e)
+        {
+
+            TimerMenuHidden();
+            TimerSettings();
+        }
+        private void TimerSettings()
+        {
+        
+            int Tijd = 0;
+            int.TryParse(TxtTimerSettings.Text, out Tijd);
+            if (Tijd <= 4 || Tijd >= 21)
+            {
+                MnINieuwSpel.IsEnabled=false;
+                Timer = 10;
+                
+            }
+            else if (Tijd >= 4 && Tijd <= 21)
+            {
+                MnINieuwSpel.IsEnabled = true;
+                Timer = Tijd;
+            }
+            
+        }
+        private void TimerMenuHidden()
+        {
+            MnINieuwSpel.IsEnabled = false;
+            LblInfo.Visibility = Visibility.Visible;
+            TxtTimerSettings.Visibility = Visibility.Visible;
+            LblTimer.Visibility = Visibility.Hidden;
+            LblMaskingWoord.Visibility = Visibility.Hidden;
+            BtnNieuwSpel.IsEnabled = false;
+            BtnVerbergWoord.Visibility = Visibility.Hidden;
+            TxtWoord.Visibility = Visibility.Hidden;
+            BtnRaad.Visibility = Visibility.Hidden;
+            BtnNieuwSpel.Visibility = Visibility.Hidden;
+            BtnRaad.IsEnabled = false;
+            BtnVerbergWoord.IsEnabled = false;
+            ImgHangMan.Visibility = Visibility.Hidden;
+            TxtTekst.Visibility = Visibility.Hidden;
         }
     }
 }
