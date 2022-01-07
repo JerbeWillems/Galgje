@@ -49,8 +49,8 @@ namespace WpfTryGalgje
             TxtTimerSettings.Visibility = Visibility.Hidden;
             BtnMultiPlayer.Visibility = Visibility.Visible;
             BtnSinglePlayer.Visibility = Visibility.Visible;
-            BtnSinglePlayer.IsEnabled = true;
-            BtnMultiPlayer.IsEnabled = true;
+            BtnSinglePlayer.IsEnabled = false;
+            BtnMultiPlayer.IsEnabled = false;
             MnITimer.Visibility = Visibility.Visible;
             MnITimer.IsEnabled = true;
             MnIHighScore.Visibility = Visibility.Visible;
@@ -353,20 +353,21 @@ namespace WpfTryGalgje
         }
         private void NieuwspelMenuShow()
         {
-            
+            BtnNaam.Visibility = Visibility.Hidden;
+            TxtNaam.Visibility = Visibility.Hidden;    
             LblInfo.Visibility = Visibility.Hidden;
             TxtTimerSettings.Visibility = Visibility.Hidden;
             LblTimer.Visibility = Visibility.Hidden;
             LblMaskingWoord.Visibility = Visibility.Hidden;
             BtnNieuwSpel.IsEnabled = true;
             BtnVerbergWoord.Visibility = Visibility.Visible;
-            TxtWoord.Visibility = Visibility.Visible;
+            TxtWoord.Visibility = Visibility.Hidden;
             BtnRaad.Visibility = Visibility.Visible;
             BtnNieuwSpel.Visibility = Visibility.Visible;
             BtnRaad.IsEnabled = true;
             BtnVerbergWoord.IsEnabled = true;
             ImgHangMan.Visibility = Visibility.Visible;
-            TxtTekst.Visibility = Visibility.Visible;
+            TxtTekst.Visibility = Visibility.Hidden;
         }
 
        private void MnISpelAfsluiten_Click(object sender, RoutedEventArgs e)
@@ -444,10 +445,14 @@ namespace WpfTryGalgje
             BtnSinglePlayer.Visibility = Visibility.Hidden;
             BtnSinglePlayer.IsEnabled = false;
             BtnMultiPlayer.IsEnabled = false;
+            TxtWoord.Visibility= Visibility.Visible;
+            TxtTekst.Visibility= Visibility.Visible;
         }
 
        private void BtnSinglePlayer_Click(object sender, RoutedEventArgs e)
         {
+            TxtWoord.Visibility = Visibility.Visible;
+            TxtTekst.Visibility = Visibility.Visible;
             BtnNaam.Visibility = Visibility.Hidden;
             TxtNaam.Visibility = Visibility.Hidden;
             MnIHint.Visibility = Visibility.Visible;
@@ -515,11 +520,7 @@ namespace WpfTryGalgje
 
             var letter = Alfabet[idx].ToString();
 
-                if (woord.Contains(letter))
-                {
-                    RandomLetter();
-                }
-                else if (FouteLetters.Equals(letter))
+                if (woord.Contains(letter) && FouteLetters.Equals(letter))
                 {
                     RandomLetter();
                 }
@@ -555,6 +556,8 @@ namespace WpfTryGalgje
             TxtNaam.Visibility = Visibility.Hidden;
          
             BtnNaam.Visibility = Visibility.Hidden;
+            BtnSinglePlayer.IsEnabled = true;
+            BtnMultiPlayer.IsEnabled = true;
             
         }
             
