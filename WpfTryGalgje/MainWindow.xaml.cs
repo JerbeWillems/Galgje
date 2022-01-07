@@ -44,6 +44,7 @@ namespace WpfTryGalgje
 
        private void BtnNieuwSpel_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             TimerMenuHidden();
             LblInfo.Visibility = Visibility.Hidden;
             TxtTimerSettings.Visibility = Visibility.Hidden;
@@ -55,7 +56,7 @@ namespace WpfTryGalgje
             MnITimer.IsEnabled = true;
             MnIHighScore.Visibility = Visibility.Visible;
             MnINieuwSpel.Visibility = Visibility.Visible;
-            MnITimer.Visibility = Visibility.Visible;
+            MnIHint.Visibility = Visibility.Hidden;
             MnISpelAfsluiten.Visibility = Visibility.Visible;
             BtnNaam.Visibility = Visibility.Visible;
             TxtNaam.Visibility = Visibility.Visible;
@@ -350,9 +351,12 @@ namespace WpfTryGalgje
        private void MnINieuwSpel_Click(object sender, RoutedEventArgs e)
         {
             NieuwspelMenuShow();
+            
         }
         private void NieuwspelMenuShow()
         {
+            timer.Stop();
+            MnIHint.Visibility = Visibility.Hidden;
             BtnNaam.Visibility = Visibility.Hidden;
             TxtNaam.Visibility = Visibility.Hidden;    
             LblInfo.Visibility = Visibility.Hidden;
@@ -451,8 +455,6 @@ namespace WpfTryGalgje
 
        private void BtnSinglePlayer_Click(object sender, RoutedEventArgs e)
         {
-            TxtWoord.Visibility = Visibility.Visible;
-            TxtTekst.Visibility = Visibility.Visible;
             BtnNaam.Visibility = Visibility.Hidden;
             TxtNaam.Visibility = Visibility.Hidden;
             MnIHint.Visibility = Visibility.Visible;
@@ -492,6 +494,8 @@ namespace WpfTryGalgje
             LblTimer.Visibility = Visibility.Visible;
             LblMaskingWoord.Visibility = Visibility.Visible;
             TxtWoord.Clear();
+            TxtWoord.Visibility = Visibility.Visible;
+            TxtTekst.Visibility = Visibility.Visible;
         }
        private void RegistreerZoekWoordSinglePlayer()
         {
