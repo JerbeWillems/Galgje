@@ -11,11 +11,27 @@
         <Grid>
             <Menu Background="Green" IsMainMenu="True">
                 <MenuItem x:Name="MnINieuwSpel" Background="White" Header="Nieuw spel starten" Click="MnINieuwSpel_Click"/>
-                <MenuItem x:Name="MnIHint" Background="White" Header="Een hint vragen"/>
+                <MenuItem x:Name="MnIHint" Background="White" Header="Een hint vragen" Click="MnIHint_Click"/>
                 <MenuItem x:Name="MnITimer" Background="White" Header="Timer instellen" Click="MnITimer_Click"/>
-                <MenuItem x:Name="MnIHighScore" Background="White" Header="Highscores opvragen"/>
+                <MenuItem x:Name="MnIHighScore" Background="White" Header="Highscores opvragen" Click="MnIHighScore_Click"/>
                 <MenuItem x:Name="MnISpelAfsluiten" Background="White" Header="Spel afsluiten" Click="MnISpelAfsluiten_Click"/>
             </Menu>
+            <TextBox x:Name="TxtNaam" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" Margin="570,90,0,0" FontFamily="Showcard Gothic" FontSize="22" ></TextBox>
+            <Button x:Name="BtnNaam" Content="Naam" Click="BtnNaam_Click" Background="LightBlue" FontFamily="Showcard Gothic" FontSize="22" Margin="594,16,74,279" >
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <StackPanel>
                 <TextBox x:Name="TxtTekst" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="223" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,28,0,0" FontFamily="Showcard Gothic" FontSize="22"/>
                 <TextBox x:Name="TxtWoord" TextAlignment="Center" Foreground="White" Background="LightCoral" HorizontalAlignment="Left" Height="98" TextWrapping="Wrap" VerticalAlignment="Top" Width="525" Margin="26,20,0,0" FontFamily="Showcard Gothic" FontSize="22"/>

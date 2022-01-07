@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,9 @@ namespace WpfTryGalgje
         StringBuilder JuisteLetters = new StringBuilder();
         StringBuilder FouteLetters = new StringBuilder();
         DispatcherTimer timer = new DispatcherTimer();
+        Dictionary<string, int> dic = new Dictionary<string, int>();
+        ArrayList Scoreboard = new ArrayList();
+        string naam;
 
 
 
@@ -49,6 +53,12 @@ namespace WpfTryGalgje
             BtnMultiPlayer.IsEnabled = true;
             MnITimer.Visibility = Visibility.Visible;
             MnITimer.IsEnabled = true;
+            MnIHighScore.Visibility = Visibility.Visible;
+            MnINieuwSpel.Visibility = Visibility.Visible;
+            MnITimer.Visibility = Visibility.Visible;
+            MnISpelAfsluiten.Visibility = Visibility.Visible;
+            BtnNaam.Visibility = Visibility.Visible;
+            TxtNaam.Visibility = Visibility.Visible;
 
 
         }
@@ -156,8 +166,16 @@ namespace WpfTryGalgje
     "sousafoon"
         };
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            BtnNaam.Visibility = Visibility.Hidden;
+            TxtNaam.Visibility = Visibility.Hidden;
+            BtnVerbergWoord.IsEnabled = false;
+            MnIHighScore.Visibility = Visibility.Hidden;
+            MnIHint.Visibility = Visibility.Hidden;
+            MnINieuwSpel.Visibility = Visibility.Hidden;
+            MnITimer.Visibility = Visibility.Hidden;
+            MnISpelAfsluiten.Visibility = Visibility.Hidden;
             TxtTekst.Visibility = Visibility.Hidden;
             TxtWoord.Visibility = Visibility.Hidden;
             BtnRaad.IsEnabled = false;
@@ -174,6 +192,7 @@ namespace WpfTryGalgje
 
        private void BtnVerbergWoord_Click(object sender, RoutedEventArgs e)
         {
+            MnIHint.Visibility = Visibility.Visible;
             RegistreerZoekWoordMultiPlayer();
             WoordMaskeren(string.Empty);
             ResetTimer();
@@ -252,12 +271,12 @@ namespace WpfTryGalgje
 
 
         }
-        private void StartTimer()
+         private void StartTimer()
         {
             timer.Start();
         }
 
-        private void ResetTimer()
+         private void ResetTimer()
         {
             TimerSettings();
             LblTimer.Content = Timer.ToString();
@@ -284,6 +303,7 @@ namespace WpfTryGalgje
                     TxtWoord.Clear();
                     TxtWoord.IsEnabled = false;
                     MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
+                    Scoreboard.Add( naam + " - " + levens + " - " + DateTime.Now.ToString("HH:mm:ss"));
                 }
                 
             }
@@ -295,6 +315,7 @@ namespace WpfTryGalgje
                 TxtWoord.Clear();
                 TxtWoord.IsEnabled = false;
                 MessageBox.Show($"Proficiat u heeft {woord} geraden, druk op Nieuw Spel om opnieuw te beginnen");
+                Scoreboard.Add( naam + " - " + levens + " - " + DateTime.Now.ToString("HH:mm:ss"));
             }
             else
             {
@@ -326,10 +347,9 @@ namespace WpfTryGalgje
             ImgHangMan.Source = bitmap;
         }
 
-        private void MnINieuwSpel_Click(object sender, RoutedEventArgs e)
+       private void MnINieuwSpel_Click(object sender, RoutedEventArgs e)
         {
             NieuwspelMenuShow();
-            MessageBox.Show("Wil je een nieuw spel starten? Druk op de knop Nieuw Spel");
         }
         private void NieuwspelMenuShow()
         {
@@ -349,12 +369,12 @@ namespace WpfTryGalgje
             TxtTekst.Visibility = Visibility.Visible;
         }
 
-        private void MnISpelAfsluiten_Click(object sender, RoutedEventArgs e)
+       private void MnISpelAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();   
         }
 
-        private void MnITimer_Click(object sender, RoutedEventArgs e)
+       private void MnITimer_Click(object sender, RoutedEventArgs e)
         {
 
             TimerMenuHidden();
@@ -400,8 +420,10 @@ namespace WpfTryGalgje
             TxtTekst.Visibility = Visibility.Hidden;
         }
 
-        private void BtnMultiPlayer_Click(object sender, RoutedEventArgs e)
+       private void BtnMultiPlayer_Click(object sender, RoutedEventArgs e)
         {
+            BtnNaam.Visibility = Visibility.Hidden;
+            TxtNaam.Visibility = Visibility.Hidden;
             NieuwspelMenuShow();
             TxtTekst.Text = "Geheim woord ingeven";
             BtnRaad.IsEnabled = false;
@@ -424,8 +446,11 @@ namespace WpfTryGalgje
             BtnMultiPlayer.IsEnabled = false;
         }
 
-        private void BtnSinglePlayer_Click(object sender, RoutedEventArgs e)
+       private void BtnSinglePlayer_Click(object sender, RoutedEventArgs e)
         {
+            BtnNaam.Visibility = Visibility.Hidden;
+            TxtNaam.Visibility = Visibility.Hidden;
+            MnIHint.Visibility = Visibility.Visible;
             NieuwspelMenuShow();
             TxtTekst.Text = "Geheim woord ingeven";
             BtnRaad.IsEnabled = false;
@@ -463,15 +488,75 @@ namespace WpfTryGalgje
             LblMaskingWoord.Visibility = Visibility.Visible;
             TxtWoord.Clear();
         }
-        private void RegistreerZoekWoordSinglePlayer()
+       private void RegistreerZoekWoordSinglePlayer()
         {
             Random random = new Random();
             int idx = random.Next(0, galgjeWoorden.Length);
 
-            var woordLower = galgjeWoorden[idx].ToString();
+            var woordLower = galgjeWoorden[idx].ToString().ToLower();
             ZoekWoordArray = woordLower.ToCharArray();
             woord = woordLower;
             TxtWoord.Clear();
         }
+
+       private void MnIHint_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            ResetTimer();
+            RandomLetter();
+            MnIHighScore.Visibility = Visibility.Hidden;
+            MnIHighScore.IsEnabled = false;
+            
+        }
+        private void RandomLetter()
+        {
+            Random rand = new Random();
+            int idx = rand.Next(0, Alfabet.Length);
+
+            var letter = Alfabet[idx].ToString();
+
+                if (woord.Contains(letter))
+                {
+                    RandomLetter();
+                }
+                else if (FouteLetters.Equals(letter))
+                {
+                    RandomLetter();
+                }
+                else
+                {
+                    MessageBox.Show($"Hier is een Hint, je komt niet meer op het scorebord: {letter.ToUpper()}");
+                    FouteLetters.Append(letter);
+                }
+
+        }
+        private string[] Alfabet = new string[]
+        {
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+        };
+
+       private void MnIHighScore_Click(object sender, RoutedEventArgs e)
+        {
+            LblMaskingWoord.Content = "";
+            TxtTekst.Clear();
+            LblMaskingWoord.Visibility = Visibility.Hidden;
+            LblTimer.Visibility = Visibility.Hidden;
+
+            for (int i = 0; i < Scoreboard.Count; i++)
+            {
+                TxtTekst.Text += Environment.NewLine;
+                TxtTekst.Text += Scoreboard[i];
+            }
+        }
+
+        private void BtnNaam_Click(object sender, RoutedEventArgs e)
+        {
+            naam = TxtNaam.Text;
+            TxtNaam.Visibility = Visibility.Hidden;
+         
+            BtnNaam.Visibility = Visibility.Hidden;
+            
+        }
+            
     }
 }
